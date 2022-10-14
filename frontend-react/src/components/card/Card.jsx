@@ -1,17 +1,17 @@
 import React from "react";
 import "./Card.css";
 
-const Card = () => {
+const Card = ({ artist }) => {
   return (
     <>
       <div className="artist">
-        <img src="https://i.ibb.co/wSCM0CY/bot-image.jpg" alt="" />
+        <img src={artist?.images[0]?.url} alt="" />
         <div className="artist-info">
           <div className="title-container">
-            <h3>title</h3>
+            <h3>{artist.name}</h3>
           </div>
           <div className="follower-conatiner">
-            <p>followers</p>
+            <p>{artist.followers.total} followers</p>
           </div>
           <div className="rating-container">
             <div className="rating">
