@@ -45,6 +45,7 @@ const Search = () => {
               }}
               onChange={(e) => {
                 setSearchInput(e.currentTarget.value);
+                handleSearch();
               }}
             />
           </form>
