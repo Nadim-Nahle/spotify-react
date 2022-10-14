@@ -1,0 +1,11 @@
+.navbar {
+  background-color: rgb(194, 194, 194);
+  height: 65px;
+  display: flex;
+  align-items: center;
+  border: 3px inset;
+}
+.navbar-content {
+  padding-left: 5%;
+  font-size: 25px;
+}
