@@ -1,8 +1,8 @@
 
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout";
-import Login from "./components/login/Login";
-import CallBack from "./pages/callback/CallBack";
+import Login from "./pages/login/Login";
+import Search from "./pages/search/Search";
 
 function App() {
 
@@ -12,7 +12,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           {/*PUBLIC ROUTES*/}
           <Route path="/" element={<Login />}></Route>
-          <Route path="/callback" element={<CallBack />}></Route>
+          <Route path="/search" element={<Search />}></Route>
           {/*PROTECTED ROUTES*/}
 
 
