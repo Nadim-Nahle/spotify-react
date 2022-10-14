@@ -1,0 +1,19 @@
+.artist {
+  width: 250px;
+  margin: 1rem;
+  border: 1px solid;
+}
+.artist img {
+  max-width: 100%;
+}
+
+.artist-info {
+  padding-left: 2%;
+}
+.follower-conatiner {
+  margin-top: -6%;
+}
+
+.rating-container {
+  padding-top: 1%;
+}
