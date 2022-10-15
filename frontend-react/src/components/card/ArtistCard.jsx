@@ -1,4 +1,5 @@
 import React from "react";
+import Rate from "../rate/Rate";
 import "./Card.css";
 
 const Card = ({ artist, getAlbums }) => {
@@ -19,7 +20,7 @@ const Card = ({ artist, getAlbums }) => {
           </div>
           <div className="rating-container">
             <div className="rating">
-              <p>rating</p>
+              <Rate rating={5} />
             </div>
           </div>
         </div>
