@@ -8,7 +8,6 @@ const getReturnedParamsFromSpotifyAuth = (hash) => {
   const stringAfterHashtag = hash.substring(1);
   const paramsInUrl = stringAfterHashtag.split("&");
   const paramsSplitUp = paramsInUrl.reduce((accumulater, currentValue) => {
-    console.log(currentValue);
     const [key, value] = currentValue.split("=");
     accumulater[key] = value;
     return accumulater;
@@ -36,6 +35,9 @@ const Search = () => {
     artistData.map((artist) => (
       <Card key={artist.id} artist={artist} getAlbums={getAlbums} />
     ));
+
+  const renderAlbums = () =>
+    artistAlbum.map((album) => <AlbumCard key={album.id} album={album} />);
 
   async function handleSearch(e) {
     const options = {
@@ -75,6 +77,7 @@ const Search = () => {
       console.log(err);
     }
   }
+  console.log(artistAlbum);
 
   const changeStyle = (e) => {
     e.currentTarget.style.top = "10px";
@@ -96,6 +99,7 @@ const Search = () => {
               onChange={(e) => {
                 setSearchInput(e.currentTarget.value);
                 handleSearch();
+                setToggle(true);
               }}
               onFocus={changeStyle}
             />
@@ -105,9 +109,7 @@ const Search = () => {
       {toggle ? (
         <div className="card-container">{renderArtists()}</div>
       ) : (
-        <div className="card-container">
-          <AlbumCard />
-        </div>
+        <div className="card-container">{renderAlbums()}</div>
       )}
     </>
   );
