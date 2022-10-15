@@ -6,7 +6,7 @@ const Rate = ({ rating }) => {
   const stars = [1, 2, 3, 4, 5];
   const newRating = parseInt(rating - 1);
   return (
-    <div className="App">
+    <div className="Rate">
       <div className="flex-container">
         {stars.map((star, i) => (
           <Star key={i} starId={i} rating={newRating} />

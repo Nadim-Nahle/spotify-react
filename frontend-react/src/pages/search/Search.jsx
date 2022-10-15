@@ -99,7 +99,7 @@ const Search = () => {
               <input
                 className={searchKey ? "search-input-new" : "search-input"}
                 type="text"
-                placeholder="Search for an artist"
+                placeholder="Search for an artist..."
                 onKeyPress={(e) => {
                   if (e.key === "Enter") {
                     handleSearch();
