@@ -37,7 +37,9 @@ const Search = () => {
     ));
 
   const renderAlbums = () =>
-    artistAlbum.map((album) => <AlbumCard key={album.id} album={album} />);
+    artistAlbum.map((album) => {
+      return <AlbumCard key={album.id} album={album} />;
+    });
 
   async function handleSearch(e) {
     const options = {
