@@ -1,12 +1,23 @@
 .artist {
   width: 38vh;
   margin: 1rem;
-  border: 1px solid;
+  border: 1px solid gray;
+  cursor: pointer;
+}
+.album {
+  width: 38vh;
+  margin: 1rem;
+  border: 1px solid gray;
 }
 .artist img {
   width: 38vh;
   height: 35vh;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid gray;
+}
+.album img {
+  width: 38vh;
+  height: 35vh;
+  border-bottom: 1px solid gray;
 }
 
 .artist-info {
@@ -15,6 +26,15 @@
 .follower-conatiner {
   margin-top: -6%;
   color: gray;
+}
+.preview {
+  color: gray;
+  border-top: 1px solid gray;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 30px;
+  cursor: pointer;
 }
 
 .rating-container {
@@ -28,7 +48,7 @@
   justify-content: center;
   align-items: center;
   color: black;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid gray;
 }
 
 .date {

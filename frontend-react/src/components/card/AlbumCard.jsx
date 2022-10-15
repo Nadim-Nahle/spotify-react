@@ -2,9 +2,13 @@ import React from "react";
 import "./Card.css";
 
 const AlbumCard = ({ album }) => {
+  const openInNewTab = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <>
-      <div className="artist">
+      <div className="album">
         {album?.images[0]?.url ? (
           <img src={album?.images[0]?.url} alt="" />
         ) : (
@@ -23,6 +27,12 @@ const AlbumCard = ({ album }) => {
               <p>{album?.total_tracks} tracks</p>
             </div>
           </div>
+        </div>
+        <div
+          className="preview"
+          onClick={() => openInNewTab(album?.external_urls?.spotify)}
+        >
+          Preview on Spotify
         </div>
       </div>
     </>
