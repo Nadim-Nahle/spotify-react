@@ -11,7 +11,7 @@ const Star = ({ starId, rating }) => {
       <svg
         height="55px"
         width="53px"
-        class={styleClass}
+        className={styleClass}
         viewBox="0 0 25 23"
         data-rating="1"
       >

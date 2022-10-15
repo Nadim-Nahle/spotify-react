@@ -57,6 +57,7 @@ const Search = () => {
       var newUrl = url.substring(url.indexOf("=") + 1, url.lastIndexOf("&"));
       setKey({ newUrl });
       setArtistData(res.data.artists.items);
+      console.log(res.data.artists.items);
     } catch (err) {
       console.log(err);
     }

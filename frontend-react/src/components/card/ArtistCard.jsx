@@ -20,7 +20,7 @@ const Card = ({ artist, getAlbums }) => {
           </div>
           <div className="rating-container">
             <div className="rating">
-              <Rate rating={5} />
+              <Rate rating={artist?.popularity / 20} />
             </div>
           </div>
         </div>
