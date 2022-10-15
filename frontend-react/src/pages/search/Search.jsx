@@ -19,6 +19,10 @@ const getReturnedParamsFromSpotifyAuth = (hash) => {
 
 const Search = () => {
   const { setAuth } = useAuth();
+  const { setKey } = useAuth();
+  const { key } = useAuth();
+  const searchKey = key.newUrl;
+
   const navigate = useNavigate();
   useEffect(() => {
     if (window.location.hash) {
@@ -28,11 +32,9 @@ const Search = () => {
       localStorage.setItem("accessToken", access_token);
     }
   });
-  const [serachInput, setSearchInput] = useState("");
+  const [serachInput, setSearchInput] = useState(searchKey ? searchKey : "");
   const [artistData, setArtistData] = useState([]);
-  const [artistAlbum, setArtistAlbum] = useState([]);
   const access_token = localStorage.getItem("accessToken");
-  const [toggle, setToggle] = useState(true);
 
   const renderArtists = () =>
     artistData.map((artist) => (
@@ -50,9 +52,11 @@ const Search = () => {
       },
     };
     try {
-      const { data } = await axios(options);
-      //console.log(data.artists.items[0].images[0].url);
-      setArtistData(data.artists.items);
+      const res = await axios(options);
+      const url = res.request?.responseURL;
+      var newUrl = url.substring(url.indexOf("=") + 1, url.lastIndexOf("&"));
+      setKey({ newUrl });
+      setArtistData(res.data.artists.items);
     } catch (err) {
       console.log(err);
     }
@@ -71,57 +75,48 @@ const Search = () => {
 
     try {
       const { data } = await axios(options);
-      setArtistAlbum(data.items);
       let authAlbum = data.items;
-      setToggle(false);
       setAuth({ authAlbum });
       navigate("/album");
     } catch (err) {
       console.log(err);
     }
   }
-  console.log(artistAlbum);
 
   const changeStyle = (e) => {
     e.currentTarget.style.top = "10px";
   };
+  useEffect(() => {
+    handleSearch();
+  }, []);
   return (
     <>
-      {toggle ? (
-        <>
-          <div className="search">
-            <div className="search-center">
-              <form onSubmit={handleSearch}>
-                <input
-                  className="search-input"
-                  type="text"
-                  placeholder="Search for an artist"
-                  onKeyPress={(e) => {
-                    if (e.key === "Enter") {
-                      handleSearch();
-                    }
-                  }}
-                  onChange={(e) => {
-                    setSearchInput(e.currentTarget.value);
+      <>
+        <div className="search">
+          <div className="search-center">
+            <form onSubmit={handleSearch}>
+              <input
+                className={searchKey ? "search-input-new" : "search-input"}
+                type="text"
+                placeholder="Search for an artist"
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
                     handleSearch();
-                    setToggle(true);
-                  }}
-                  onFocus={changeStyle}
-                />
-              </form>
-            </div>
+                  }
+                }}
+                onChange={(e) => {
+                  setSearchInput(e.currentTarget.value);
+                  handleSearch();
+                }}
+                onFocus={changeStyle}
+                value={serachInput}
+              />
+            </form>
           </div>
+        </div>
 
-          <div className="card-container">{renderArtists()}</div>
-        </>
-      ) : (
-        <>
-          <div className="info">
-            <h1>{artistAlbum[0]?.artists[0]?.name}</h1>
-            <p>Albums</p>
-          </div>
-        </>
-      )}
+        <div className="card-container">{renderArtists()}</div>
+      </>
     </>
   );
 };

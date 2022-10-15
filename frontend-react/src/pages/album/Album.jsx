@@ -8,7 +8,6 @@ const Album = () => {
 
   const renderAlbums = () => album?.map((a) => <AlbumCard key={a.id} a={a} />);
 
-  console.log("albu", album);
   return (
     <>
       <div className="info">
