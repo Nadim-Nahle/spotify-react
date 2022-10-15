@@ -85,7 +85,7 @@ const Search = () => {
   }
 
   const changeStyle = (e) => {
-    e.currentTarget.style.top = "10px";
+    e.parentNode.style.top = "10px";
   };
   useEffect(() => {
     handleSearch();
@@ -95,9 +95,10 @@ const Search = () => {
       <>
         <div className="search">
           <div className="search-center">
-            <form onSubmit={handleSearch}>
+            {/*
+            <form onSubmit={handleSearch} onFocus={changeStyle}>
               <input
-                className={searchKey ? "search-input-new" : "search-input"}
+                className= {searchKey ?"search-input-new" : "search-input"}
                 type="text"
                 placeholder="Search for an artist..."
                 onKeyPress={(e) => {
@@ -109,10 +110,29 @@ const Search = () => {
                   setSearchInput(e.currentTarget.value);
                   handleSearch();
                 }}
-                onFocus={changeStyle}
                 value={serachInput}
               />
             </form>
+              */}
+            <div className={searchKey ? "new-container" : "container"}>
+              <form className="search-from" onSubmit={handleSearch}>
+                <input
+                  className="search-inputt"
+                  type="text"
+                  name=""
+                  placeholder="Search for an artist..."
+                  onChange={(e) => {
+                    setSearchInput(e.currentTarget.value);
+                    handleSearch();
+                  }}
+                  value={serachInput}
+                  onFocus={changeStyle}
+                />
+                <button type="submit" className="search-button">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </form>
+            </div>
           </div>
         </div>
 
