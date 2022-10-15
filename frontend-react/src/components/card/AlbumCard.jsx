@@ -14,12 +14,13 @@ const AlbumCard = ({ album }) => {
           <div className="title-container">
             <h3>{album.name}</h3>
           </div>
-          <div className="follower-conatiner">
+          <div className="artist-name">
             <p>{album?.artists[0]?.name}</p>
           </div>
           <div className="rating-container">
-            <div className="rating">
-              <p>rating</p>
+            <div className="date">
+              <p>{album?.release_date}</p>
+              <p>{album?.total_tracks} tracks</p>
             </div>
           </div>
         </div>

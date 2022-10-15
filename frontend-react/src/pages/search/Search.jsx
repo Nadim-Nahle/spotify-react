@@ -84,32 +84,41 @@ const Search = () => {
   };
   return (
     <>
-      <div className="search">
-        <div className="search-center">
-          <form onSubmit={handleSearch}>
-            <input
-              className="search-input"
-              type="text"
-              placeholder="Search for an artist"
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  handleSearch();
-                }
-              }}
-              onChange={(e) => {
-                setSearchInput(e.currentTarget.value);
-                handleSearch();
-                setToggle(true);
-              }}
-              onFocus={changeStyle}
-            />
-          </form>
-        </div>
-      </div>
       {toggle ? (
-        <div className="card-container">{renderArtists()}</div>
+        <>
+          <div className="search">
+            <div className="search-center">
+              <form onSubmit={handleSearch}>
+                <input
+                  className="search-input"
+                  type="text"
+                  placeholder="Search for an artist"
+                  onKeyPress={(e) => {
+                    if (e.key === "Enter") {
+                      handleSearch();
+                    }
+                  }}
+                  onChange={(e) => {
+                    setSearchInput(e.currentTarget.value);
+                    handleSearch();
+                    setToggle(true);
+                  }}
+                  onFocus={changeStyle}
+                />
+              </form>
+            </div>
+          </div>
+
+          <div className="card-container">{renderArtists()}</div>
+        </>
       ) : (
-        <div className="card-container">{renderAlbums()}</div>
+        <>
+          <div className="info">
+            <h1>{artistAlbum[0]?.artists[0]?.name}</h1>
+            <p>Albums</p>
+          </div>
+          <div className="card-container">{renderAlbums()}</div>
+        </>
       )}
     </>
   );

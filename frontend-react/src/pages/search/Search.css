@@ -21,6 +21,10 @@ input {
   justify-content: center;
   flex-wrap: wrap;
 }
+
+.info {
+  padding-left: 10%;
+}
 @media screen and (max-width: 768px) {
   input {
     padding: 15px 50px 15px 50px;

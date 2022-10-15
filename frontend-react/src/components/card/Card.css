@@ -6,6 +6,7 @@
 .artist img {
   width: 38vh;
   height: 35vh;
+  border-bottom: 1px solid;
 }
 
 .artist-info {
@@ -13,6 +14,7 @@
 }
 .follower-conatiner {
   margin-top: -6%;
+  color: gray;
 }
 
 .rating-container {
@@ -27,4 +29,11 @@
   align-items: center;
   color: black;
   border-bottom: 1px solid black;
+}
+
+.date {
+  color: gray;
+}
+.artist-name {
+  color: gray;
 }
