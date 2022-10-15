@@ -1,10 +1,10 @@
 import React from "react";
 import "./Card.css";
 
-const Card = ({ artist }) => {
+const Card = ({ artist, getAlbums }) => {
   return (
     <>
-      <div className="artist">
+      <div className="artist" onClick={() => getAlbums(artist)}>
         {artist?.images[0]?.url ? (
           <img src={artist?.images[0]?.url} alt="" />
         ) : (

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Card from "../../components/card/Card";
+import Card from "../../components/card/ArtistCard";
 import "./Search.css";
 import axios from "axios";
+import AlbumCard from "../../components/card/AlbumCard";
 
 const getReturnedParamsFromSpotifyAuth = (hash) => {
   const stringAfterHashtag = hash.substring(1);
@@ -27,25 +28,49 @@ const Search = () => {
   });
   const [serachInput, setSearchInput] = useState("");
   const [artistData, setArtistData] = useState([]);
+  const [artistAlbum, setArtistAlbum] = useState([]);
   const access_token = localStorage.getItem("accessToken");
-  const options = {
-    method: "GET",
-    url: `https://api.spotify.com/v1/search?q=${serachInput}&type=artist`,
-    headers: {
-      Authorization: `Bearer ${access_token}`,
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  };
+  const [toggle, setToggle] = useState(true);
 
   const renderArtists = () =>
-    artistData.map((artist) => <Card key={artist.id} artist={artist} />);
+    artistData.map((artist) => (
+      <Card key={artist.id} artist={artist} getAlbums={getAlbums} />
+    ));
 
   async function handleSearch(e) {
+    const options = {
+      method: "GET",
+      url: `https://api.spotify.com/v1/search?q=${serachInput}&type=artist`,
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
     try {
       const { data } = await axios(options);
       //console.log(data.artists.items[0].images[0].url);
       setArtistData(data.artists.items);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function getAlbums(artist) {
+    const options = {
+      method: "GET",
+      url: `https://api.spotify.com/v1/artists/${artist.id}/albums`,
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const { data } = await axios(options);
+      setArtistAlbum(data.items);
+      setToggle(false);
     } catch (err) {
       console.log(err);
     }
@@ -77,7 +102,13 @@ const Search = () => {
           </form>
         </div>
       </div>
-      <div className="card-container">{renderArtists()}</div>
+      {toggle ? (
+        <div className="card-container">{renderArtists()}</div>
+      ) : (
+        <div className="card-container">
+          <AlbumCard />
+        </div>
+      )}
     </>
   );
 };
