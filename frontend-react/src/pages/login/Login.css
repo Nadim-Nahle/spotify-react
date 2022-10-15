@@ -12,3 +12,8 @@
   padding: 20px 190px 20px 190px;
   font-size: 30px;
 }
+@media screen and (max-width: 768px) {
+  .login-btn {
+    padding: 20px 100px 20px 100px;
+  }
+}

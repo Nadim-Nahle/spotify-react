@@ -57,10 +57,7 @@ const Search = () => {
       var newUrl = url.substring(url.indexOf("=") + 1, url.lastIndexOf("&"));
       setKey({ newUrl });
       setArtistData(res.data.artists.items);
-      console.log(res.data.artists.items);
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   }
 
   async function getAlbums(artist) {
@@ -79,14 +76,9 @@ const Search = () => {
       let authAlbum = data.items;
       setAuth({ authAlbum });
       navigate("/album");
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   }
 
-  const changeStyle = (e) => {
-    e.parentNode.style.top = "10px";
-  };
   useEffect(() => {
     handleSearch();
   }, []);
@@ -95,25 +87,6 @@ const Search = () => {
       <>
         <div className="search">
           <div className="search-center">
-            {/*
-            <form onSubmit={handleSearch} onFocus={changeStyle}>
-              <input
-                className= {searchKey ?"search-input-new" : "search-input"}
-                type="text"
-                placeholder="Search for an artist..."
-                onKeyPress={(e) => {
-                  if (e.key === "Enter") {
-                    handleSearch();
-                  }
-                }}
-                onChange={(e) => {
-                  setSearchInput(e.currentTarget.value);
-                  handleSearch();
-                }}
-                value={serachInput}
-              />
-            </form>
-              */}
             <div className={searchKey ? "new-container" : "container"}>
               <form className="search-from" onSubmit={handleSearch}>
                 <input
@@ -126,10 +99,9 @@ const Search = () => {
                     handleSearch();
                   }}
                   value={serachInput}
-                  onFocus={changeStyle}
                 />
                 <button type="submit" className="search-button">
-                  <i class="fa fa-search" aria-hidden="true"></i>
+                  <i className="fa fa-search" aria-hidden="true"></i>
                 </button>
               </form>
             </div>

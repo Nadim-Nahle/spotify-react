@@ -16,16 +16,6 @@
 .info {
   padding-left: 10%;
 }
-@media screen and (max-width: 768px) {
-  input {
-    padding: 15px 50px 15px 50px;
-  }
-}
-@media screen and (max-width: 500px) {
-  input {
-    padding: 0px 2px 0px 2px;
-  }
-}
 
 .container {
   width: 50%;
@@ -67,4 +57,19 @@
   border: none;
   background: none;
   font-size: 18px;
+}
+
+@media screen and (max-width: 768px) {
+  .search-inputt {
+    width: 80%;
+    height: 70%;
+  }
+  .search-from {
+    background-color: white;
+  }
+}
+@media screen and (max-width: 500px) {
+  input {
+    padding: 0px 2px 0px 2px;
+  }
 }
