@@ -1,19 +1,16 @@
-.search {
-  min-height: 100vh;
-}
-
 .search-center {
   display: flex;
   justify-content: center;
-  padding-top: 40vh;
 }
 
-.search-input {
+input {
   background-color: white;
   border: 1px solid rgb(185, 182, 182);
   border-radius: 10px;
   padding: 20px 150px 20px 150px;
   font-size: 30px;
+  position: relative;
+  top: 100px;
 }
 ::placeholder {
   color: black;
@@ -23,4 +20,14 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+@media screen and (max-width: 768px) {
+  input {
+    padding: 15px 50px 15px 50px;
+  }
+}
+@media screen and (max-width: 500px) {
+  input {
+    padding: 0px 2px 0px 2px;
+  }
 }

@@ -5,7 +5,11 @@ const Card = ({ artist }) => {
   return (
     <>
       <div className="artist">
-        <img src={artist?.images[0]?.url} alt="" />
+        {artist?.images[0]?.url ? (
+          <img src={artist?.images[0]?.url} alt="" />
+        ) : (
+          <div className="movie-placeholder"> Image Not Found</div>
+        )}
         <div className="artist-info">
           <div className="title-container">
             <h3>{artist.name}</h3>

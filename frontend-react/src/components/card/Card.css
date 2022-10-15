@@ -1,10 +1,11 @@
 .artist {
-  width: 250px;
+  width: 38vh;
   margin: 1rem;
   border: 1px solid;
 }
 .artist img {
-  max-width: 100%;
+  width: 38vh;
+  height: 35vh;
 }
 
 .artist-info {
@@ -16,4 +17,14 @@
 
 .rating-container {
   padding-top: 1%;
+}
+.movie-placeholder {
+  width: 38vh;
+  height: 35vh;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  border-bottom: 1px solid black;
 }

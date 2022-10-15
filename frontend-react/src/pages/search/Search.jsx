@@ -50,6 +50,10 @@ const Search = () => {
       console.log(err);
     }
   }
+
+  const changeStyle = (e) => {
+    e.currentTarget.style.top = "10px";
+  };
   return (
     <>
       <div className="search">
@@ -68,6 +72,7 @@ const Search = () => {
                 setSearchInput(e.currentTarget.value);
                 handleSearch();
               }}
+              onFocus={changeStyle}
             />
           </form>
         </div>
