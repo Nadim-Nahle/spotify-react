@@ -13,7 +13,7 @@ function generateRandomString(length) {
 }
 
 const CLIENT_ID = "105a826077134eff89ba8d64e0480807";
-const REDIRECT_URL = "http://localhost:3000/search";
+const REDIRECT_URL = "https://spotify-react-nadim.vercel.app/search";
 let STATE = generateRandomString(16);
 const SCOPES = "user-read-private user-read-email";
 
