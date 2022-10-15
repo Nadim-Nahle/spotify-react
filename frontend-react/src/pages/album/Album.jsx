@@ -12,7 +12,7 @@ const Album = () => {
   return (
     <>
       <div className="info">
-        <h1>{album[0]?.artists[0].name}</h1>
+        <h1>{album ? album[0]?.artists[0]?.name : null}</h1>
         <p>Albums</p>
       </div>
       <div className="card-container">{renderAlbums()}</div>
