@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import Card from "../../components/card/ArtistCard";
 import "./Search.css";
 import axios from "axios";
-import AlbumCard from "../../components/card/AlbumCard";
+import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const getReturnedParamsFromSpotifyAuth = (hash) => {
   const stringAfterHashtag = hash.substring(1);
@@ -17,6 +18,8 @@ const getReturnedParamsFromSpotifyAuth = (hash) => {
 };
 
 const Search = () => {
+  const { setAuth } = useAuth();
+  const navigate = useNavigate();
   useEffect(() => {
     if (window.location.hash) {
       const { access_token } = getReturnedParamsFromSpotifyAuth(
@@ -35,11 +38,6 @@ const Search = () => {
     artistData.map((artist) => (
       <Card key={artist.id} artist={artist} getAlbums={getAlbums} />
     ));
-
-  const renderAlbums = () =>
-    artistAlbum.map((album) => {
-      return <AlbumCard key={album.id} album={album} />;
-    });
 
   async function handleSearch(e) {
     const options = {
@@ -74,7 +72,10 @@ const Search = () => {
     try {
       const { data } = await axios(options);
       setArtistAlbum(data.items);
+      let authAlbum = data.items;
       setToggle(false);
+      setAuth({ authAlbum });
+      navigate("/album");
     } catch (err) {
       console.log(err);
     }
@@ -119,7 +120,6 @@ const Search = () => {
             <h1>{artistAlbum[0]?.artists[0]?.name}</h1>
             <p>Albums</p>
           </div>
-          <div className="card-container">{renderAlbums()}</div>
         </>
       )}
     </>

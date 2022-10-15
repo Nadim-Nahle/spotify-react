@@ -12,10 +12,10 @@ const Card = ({ artist, getAlbums }) => {
         )}
         <div className="artist-info">
           <div className="title-container">
-            <h3>{artist.name}</h3>
+            <h3>{artist?.name}</h3>
           </div>
           <div className="follower-conatiner">
-            <p>{artist.followers.total} followers</p>
+            <p>{artist?.followers?.total} followers</p>
           </div>
           <div className="rating-container">
             <div className="rating">
