@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import Card from "../../components/card/ArtistCard";
 import "./Search.css";
 import axios from "axios";
-import useAuth from "../../hooks/useAuth";
+//import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setFilter } from "../../redux/slices/filterSlice";
 
 const getReturnedParamsFromSpotifyAuth = (hash) => {
   const stringAfterHashtag = hash.substring(1);
@@ -18,10 +20,13 @@ const getReturnedParamsFromSpotifyAuth = (hash) => {
 };
 
 const Search = () => {
-  const { setAuth } = useAuth();
-  const { setKey } = useAuth();
-  const { key } = useAuth();
-  const searchKey = key.newUrl;
+  // const { setAuth } = useAuth();
+  // const { setKey } = useAuth();
+  // const { key } = useAuth();
+  // const searchKey = key.newUrl;
+
+  const filter = useSelector((state) => state.searchKey.filter);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -32,7 +37,7 @@ const Search = () => {
       localStorage.setItem("accessToken", access_token);
     }
   });
-  const [serachInput, setSearchInput] = useState(searchKey ? searchKey : "");
+  const [serachInput, setSearchInput] = useState("");
   const [artistData, setArtistData] = useState([]);
   const access_token = localStorage.getItem("accessToken");
 
@@ -55,7 +60,9 @@ const Search = () => {
       const res = await axios(options);
       const url = res.request?.responseURL;
       var newUrl = url.substring(url.indexOf("=") + 1, url.lastIndexOf("&"));
-      setKey({ newUrl });
+      dispatch(setFilter("test"));
+
+      //dispatch(setFilter(newUrl));
       setArtistData(res.data.artists.items);
     } catch (err) {}
   }
@@ -73,9 +80,10 @@ const Search = () => {
 
     try {
       const { data } = await axios(options);
-      let authAlbum = data.items;
-      setAuth({ authAlbum });
+      dispatch(setFilter(data.items));
+      //setAuth({ authAlbum });
       navigate("/album");
+      console.log("filt", filter);
     } catch (err) {}
   }
 
@@ -87,7 +95,7 @@ const Search = () => {
       <>
         <div className="search">
           <div className="search-center">
-            <div className={searchKey ? "new-container" : "container"}>
+            <div className={filter ? "new-container" : "container"}>
               <form className="search-from" onSubmit={handleSearch}>
                 <input
                   className="search-inputt"

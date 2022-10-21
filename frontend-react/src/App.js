@@ -15,9 +15,10 @@ function App() {
           {/*PUBLIC ROUTES*/}
           <Route path="/" element={<Login />}></Route>
           <Route path="/search" element={<Search />}></Route>
+          <Route path="/album" element={<Album />}></Route>
           {/*PROTECTED ROUTES*/}
           <Route element={<RequireAuth />}>
-            <Route path="/album" element={<Album />}></Route>
+
           </Route>
 
 

@@ -1,7 +1,8 @@
-import React from "react";
+import { configureStore } from "@reduxjs/toolkit";
+import filterSliceReducer from "./slices/filterSlice";
 
-const Store = () => {
-  return <div>Store</div>;
-};
-
-export default Store;
+export const Store = configureStore({
+  reducer: {
+    searchKey: filterSliceReducer,
+  },
+});

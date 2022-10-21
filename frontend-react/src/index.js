@@ -4,15 +4,21 @@ import './index.css';
 import App from './App';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from './context/AuthProvider';
+import { Store } from './redux/Store'
+import { Provider } from 'react-redux'
+
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <AuthProvider>
-      <Routes>
-        <Route path="/*" element={<App />} />
-      </Routes>
-    </AuthProvider>
+    <Provider store={Store}>
+      <AuthProvider>
+        <Routes>
+          <Route path="/*" element={<App />} />
+        </Routes>
+      </AuthProvider>
+    </Provider>
   </BrowserRouter>
 );
 
